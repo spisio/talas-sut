@@ -1,0 +1,7 @@
+# GitHub Pages runs Jekyll on this repo; keep the build tooling off the public site.
+exclude:
+  - build.py
+  - tools
+  - README.md
+  - _src
+  - _art
