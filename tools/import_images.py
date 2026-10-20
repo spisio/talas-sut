@@ -3,7 +3,7 @@
 
     python tools/import_images.py <folder with the masters>
 
-talassut_p_<name>   -> assets/img/p-<name>.jpg    (packshots, 800 px wide)
+talassut_p_<name>   -> assets/img/p-<name>.jpg    (packshots, 1000 px wide)
 talassut_cat_<name> -> assets/img/cat-<name>.jpg  (category tiles, 900 px)
 talassut_hero       -> assets/img/hero.jpg        (2400 px)
 talassut_<name>     -> assets/img/<name>.jpg      (scenes, 1600 px; _ becomes -)
@@ -20,7 +20,7 @@ OUT = Path(__file__).resolve().parent.parent / "assets" / "img"
 def target(stem):
     name = stem[len("talassut_"):]
     if name.startswith("p_"):
-        return "p-" + name[2:], 800
+        return "p-" + name[2:], 1000
     if name.startswith("cat_"):
         return "cat-" + name[4:], 900
     if name == "hero":

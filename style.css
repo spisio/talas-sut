@@ -149,7 +149,7 @@ figure.wide figcaption { font-size: .85rem; color: var(--muted); margin-top: 8px
 .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
 .product { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
 .product .art { background: #f5f2ea; position: relative; overflow: hidden; }
-.product .art img { width: 100%; aspect-ratio: 4 / 3; height: auto; object-fit: cover; transform: scale(1.2); }
+.product .art img { width: 100%; aspect-ratio: 4 / 3; height: auto; object-fit: cover; transform: scale(1.35); }
 .product .badge { position: absolute; top: 12px; left: 12px; background: #fff; color: var(--ink); font-size: .72rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; }
 .product .badge.season { background: var(--green); color: #fff; }
 .product .badge.new { background: var(--beet); color: #fff; }

@@ -113,7 +113,7 @@ FOOT = """</main>
     </div>
     <div class="foot-bottom">
       <span>&copy; 1964&ndash;2026 Talas Dairy Processing Combine. All rights reserved.</span>
-      <span>Kymyz contains 1&ndash;3% alcohol. Not for children or drivers.</span>
+      <span>Kymyz contains up to 2.4% alcohol. Not for children or drivers.</span>
     </div>
   </div>
 </footer>
