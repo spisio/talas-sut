@@ -47,7 +47,7 @@ HEAD = """<!doctype html>
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{description}">
 <meta property="og:image" content="{image}">
-<meta property="og:image:alt" content="{imagealt}">
+<meta property="og:image:alt" content="{imagealt}">{imagesize}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{description}">
@@ -214,6 +214,7 @@ def build():
         esc = lambda s: html.escape(s, quote=True)
         page = HEAD.format(title=esc(meta["title"]), description=esc(meta["description"]), url=url, nav=nav,
                            image=SITE + "assets/img/" + meta.get("image", "hero.jpg"), imagealt=esc(meta.get("imagealt", "Talas Süt")),
+                           imagesize="".join(f'\n<meta property="og:image:{k}" content="{meta[k]}">' for k in ("width", "height") if k in meta),
                            robots="noindex, follow" if meta.get("noindex") else "index, follow",
                            jsonld=structured_data(name, meta, body, url))
         page += body.strip() + "\n" + FOOT
