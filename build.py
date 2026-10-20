@@ -11,11 +11,10 @@ Each page body lives in _src/<name>.html. The first lines are a header block:
 The script wraps every body in the shared head, header and footer and writes
 <name>.html at the site root. Run it after editing anything in _src/.
 """
-import re
 from pathlib import Path
 
 ROOT = Path(__file__).parent
-SITE = "https://talassut.com/"
+SITE = "https://talas-sut.com/"
 
 NAV = [
     ("index", "Home"),
@@ -41,6 +40,7 @@ HEAD = """<!doctype html>
 <meta property="og:url" content="{url}">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{description}">
+<meta property="og:image" content="https://talas-sut.com/assets/img/hero.jpg">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,7 +50,6 @@ HEAD = """<!doctype html>
 <script data-goatcounter="https://irad.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
-{sprite}
 <div class="topbar">
   <div class="wrap">
     <span>Consumer line <a href="tel:+996392348000">2-34-80-00</a> &middot; Mon&ndash;Sat 8:00&ndash;20:00</span>
@@ -107,7 +106,7 @@ FOOT = """</main>
         <ul>
           <li>41 Temir Jol Street, Western Industrial District, Talas</li>
           <li><a href="tel:+996392348000">2-34-80-00</a></li>
-          <li><a href="mailto:info@talassut.com">info@talassut.com</a></li>
+          <li><a href="mailto:info@talas-sut.com">info@talas-sut.com</a></li>
           <li><a href="https://maps.attelkom.net/">Find us on Kartalar</a></li>
         </ul>
       </div>
@@ -124,13 +123,6 @@ FOOT = """</main>
 """
 
 
-def sprite():
-    """The pack drawings, inlined so that <use href="#carton"> works everywhere."""
-    svg = (ROOT / "assets" / "packs.svg").read_text(encoding="utf-8")
-    svg = re.sub(r"<!--.*?-->\s*", "", svg, flags=re.S)
-    return svg.replace("<svg ", '<svg width="0" height="0" style="position:absolute" aria-hidden="true" ', 1).strip()
-
-
 def build():
     for src in sorted((ROOT / "_src").glob("*.html")):
         meta_text, body = src.read_text(encoding="utf-8").split("\n---\n", 1)
@@ -141,8 +133,7 @@ def build():
                 key, ' aria-current="page"' if key == meta.get("nav") else "", label)
             for key, label in NAV)
         url = SITE if name == "index" else SITE + name + ".html"
-        page = HEAD.format(title=meta["title"], description=meta["description"], url=url, nav=nav,
-                           sprite=sprite())
+        page = HEAD.format(title=meta["title"], description=meta["description"], url=url, nav=nav)
         page += body.strip() + "\n" + FOOT
         (ROOT / (name + ".html")).write_text(page, encoding="utf-8", newline="\n")
         print("built", name + ".html")
